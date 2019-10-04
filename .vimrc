@@ -45,25 +45,20 @@ Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
 " fuzzy finder that can find almost anything, except love.
 Plugin 'kien/ctrlp.vim'
-" matching braces babe
+" matching braces babe !
 Plugin 'jiangmiao/auto-pairs'
-" python code formatter
-Plugin 'dense-analysis/ale'
+" python code formatter (look_it_up_later: this is not working because of 'pylama')
+" Plugin 'dense-analysis/ale'
 " VIM strip
 Plugin 'vim-airline/vim-airline'
 " theme for airline
 Plugin 'kyoz/purify', { 'rtp': 'vim' }
 " collection of colorschemes to customize vim
 Plugin 'flazz/vim-colorschemes'
-" python syntax highlighter with various customizations
-Plugin 'hdima/python-syntax'
-Plugin 'python-mode/python-mode', { 'for': 'python3', 'branch': 'develop' }
 " real time autocompleter for python, typescript, javascript, lisp and whatnot !
 Plugin 'maralla/completor.vim'
 " Dark theme for vim. Love it !
 Plugin 'liuchengxu/space-vim-dark'
-" Indent guide. Looks silly so I have a toggle for them.
-Plugin 'nathanaelkane/vim-indent-guides'
 
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
@@ -84,9 +79,6 @@ set cursorline
 " enable syntax and custom colorscheme
 " more colorschemes you like are hybrid, cryslominsa and afterglow
 colorscheme space-vim-dark
-
-" look_it_up_later: this is not working for some reason
-hi pythonSelf  ctermfg=68  guifg=#5f87d7 cterm=bold gui=bold
 
 " enable all Python syntax higlighting features
 let python_highlight_all = 1
@@ -134,9 +126,9 @@ nnoremap <buffer> <F9> :exec '!python3.7' shellescape(@%, 1)<cr>
 
 " TO USE BELOW STUFF YOU NEED TO HAVE VARIOUS PYTHON PACKAGES INSTALLED NAMELY
 " 1. python3.x - Python Package and IDLE for programming
-" 2. PIP - Python Installer Package
-" 3. flake8 - Syntax checker for Python
-" 4. yapf - Auto python formatter
+" 2. PIP - Python Installer Package (Install package for python3.x if you want it to work)
+" 3. flake8 - Syntax checker for Python (python3.x -m pip install flake8)
+" 4. yapf - Auto python formatter (python3.x -m pip install yapf)
 " 5. Something else I am forgetting
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -166,24 +158,11 @@ let g:airline_theme='purify'
 """"""""""""""""""""""""""""""""" for dense-analysis/ale """""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let b:ale_linters = ['flake8']
-let b:ale_fixers = [
-\   'remove_trailing_lines',
-\   'isort',
-\   'ale#fixers#generic_python#BreakUpLongLines',
-\   'yapf',
-\]
-
-nnoremap <buffer> <silent> <LocalLeader>? :ALEFix<CR>
-
-" auto-fix to PEP8 standards while saving
-let g:ale_fix_on_save = 1
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""" for google/yapf """"""""""""""""""""""""""""""""""""'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" format code to pep8 using \=
+" format the python code to pep8 standards using '\='
 autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
