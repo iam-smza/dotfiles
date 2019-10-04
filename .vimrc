@@ -48,7 +48,7 @@ Plugin 'kien/ctrlp.vim'
 " matching braces babe !
 Plugin 'jiangmiao/auto-pairs'
 " python code formatter (look_it_up_later: this is not working because of 'pylama')
-" Plugin 'dense-analysis/ale'
+Plugin 'dense-analysis/ale'
 " VIM strip
 Plugin 'vim-airline/vim-airline'
 " theme for airline
@@ -76,6 +76,9 @@ filetype plugin indent on    " required
 " show a visual line under the cursor's current line
 set cursorline
 
+" set ruler
+set ruler
+
 " enable syntax and custom colorscheme
 " more colorschemes you like are hybrid, cryslominsa and afterglow
 colorscheme space-vim-dark
@@ -102,6 +105,28 @@ set shiftwidth=4
 set showmatch
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""" POWER USER OPTIONS """""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" use many much levels of undo
+set undolevels=1000
+
+" Go into Paste Mode for a large buffer, using this turns off the smart-vim
+" Press <F2> -> paste the buffer -> press <F2> to leave Paste Mode
+set pastetoggle=<F2>
+
+" Searching for stuff
+
+" ignore case when searching
+set ignorecase
+" ignore case if search pattern is all lowercase, case-sensitive otherwise
+set smartcase
+" highlight search terms
+set hlsearch
+" show search matches as you type
+set incsearch
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""" MAPPINGS """"""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -125,9 +150,10 @@ nnoremap <buffer> <F9> :exec '!python3.7' shellescape(@%, 1)<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " TO USE BELOW STUFF YOU NEED TO HAVE VARIOUS PYTHON PACKAGES INSTALLED NAMELY
+" REMEMBER TO USE THE SAME PYTHON VERSION YOU WANT TO USE THE MODULES FROM
 " 1. python3.x - Python Package and IDLE for programming
 " 2. PIP - Python Installer Package (Install package for python3.x if you want it to work)
-" 3. flake8 - Syntax checker for Python (python3.x -m pip install flake8)
+" 3. flake8 - Syntax checker for Python (pip3.7 install flake8)
 " 4. yapf - Auto python formatter (python3.x -m pip install yapf)
 " 5. Something else I am forgetting
 
@@ -157,6 +183,19 @@ let g:airline_theme='purify'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""" for dense-analysis/ale """""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let b:ale_linters = ['flake8']
+let b:ale_fixers = [
+\   'remove_trailing_lines',
+\   'isort',
+\   'ale#fixers#generic_python#BreakUpLongLines',
+\   'yapf',
+\]
+
+nnoremap <buffer> <silent> <LocalLeader>? :ALEFix<CR>
+
+" auto-fix to PEP8 standards while saving
+let g:ale_fix_on_save = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""" for google/yapf """"""""""""""""""""""""""""""""""""'
