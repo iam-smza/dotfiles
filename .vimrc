@@ -1,8 +1,17 @@
-
 " VIMRunCommands file
 " Maintainer: Zamran Ali
 " Github: https://www.github.com/iam-smza
 " Twitter: @iam_smza
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""" HOW TO USE """""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" CLONE THE VUNDLE REPOSITORY 
+" HERE -> git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+" CREATE ~/.vimrc AND PASTE THE STUFF OF THIS FILE OR DOWNLOAD THIS FILE, WHATEVER
+" LAUNCH VIM AND DO :PluginInstall IN COMMAND MODE
+" YOU CAN'T DO :PluginInstall UNLESS YOU CLONE THE VUNDLE REPOSITORY
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""" REQUISITES """""""""""""""""""""""""""""""""""""""
@@ -47,8 +56,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 " matching braces babe !
 Plugin 'jiangmiao/auto-pairs'
-" python code formatter (look_it_up_later: this is not working because of 'pylama')
-Plugin 'dense-analysis/ale'
+" *** UNCOMMENT THE FOLOWING AND ITS SETTINGS BELOW TO USE REAL TIME PYTHON FORMATTER ***
+" Plugin 'dense-analysis/ale'
+" for sorting the python modules alphabetically
+Plugin 'timothycrosley/isort'
 " VIM strip
 Plugin 'vim-airline/vim-airline'
 " theme for airline
@@ -75,9 +86,6 @@ filetype plugin indent on    " required
 
 " show a visual line under the cursor's current line
 set cursorline
-
-" set ruler
-set ruler
 
 " enable syntax and custom colorscheme
 " more colorschemes you like are hybrid, cryslominsa and afterglow
@@ -134,7 +142,7 @@ set incsearch
 imap ;; <Esc>
 
 " non-recursive mapping of 'U' to mimic redo in NORMAL MODE
-nnoremap U <C-R>
+nnoremap YT <C-R>
 
 " Map 'ctrl+r' to save while in INSERT MODE and NORMAL MODE
 nmap <c-r> :w<CR>
@@ -161,6 +169,7 @@ nnoremap <buffer> <F9> :exec '!python3.7' shellescape(@%, 1)<cr>
 """""""""""""""""""""""""""""""""" for nerd-tree plugin """"""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" if no file is open in VIM show nerd-tree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
@@ -178,24 +187,27 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 """"""""""""""""""""""""""""""""""" for air-line strip """""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" set theme for airline
 let g:airline_theme='purify'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""" for dense-analysis/ale """""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let b:ale_linters = ['flake8']
-let b:ale_fixers = [
-\   'remove_trailing_lines',
-\   'isort',
-\   'ale#fixers#generic_python#BreakUpLongLines',
-\   'yapf',
-\]
+" uncomment the following to use the functionality
 
-nnoremap <buffer> <silent> <LocalLeader>? :ALEFix<CR>
+" let b:ale_linters = ['flake8']
+" let b:ale_fixers = [
+" \   'remove_trailing_lines',
+" \   'isort',
+" \   'ale#fixers#generic_python#BreakUpLongLines',
+" \   'yapf',
+" \]
+
+" nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
 
 " auto-fix to PEP8 standards while saving
-let g:ale_fix_on_save = 1
+" let g:ale_fix_on_save = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""" for google/yapf """"""""""""""""""""""""""""""""""""'
