@@ -56,7 +56,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 " matching braces babe !
 Plugin 'jiangmiao/auto-pairs'
-" *** UNCOMMENT THE FOLOWING AND ITS SETTINGS BELOW TO USE REAL TIME PYTHON FORMATTER ***
+" *** UNCOMMENT THE FOLLOWING AND ITS SETTINGS BELOW TO USE REAL TIME PYTHON FORMATTER ***
 " Plugin 'dense-analysis/ale'
 " for sorting the python modules alphabetically
 Plugin 'timothycrosley/isort'
@@ -169,7 +169,7 @@ nnoremap <buffer> <F9> :exec '!python3.7' shellescape(@%, 1)<cr>
 """""""""""""""""""""""""""""""""" for nerd-tree plugin """"""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" if no file is open in VIM show nerd-tree
+" if no file is open in VIM, show nerd-tree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
@@ -194,7 +194,7 @@ let g:airline_theme='purify'
 """"""""""""""""""""""""""""""""" for dense-analysis/ale """""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" uncomment the following to use the functionality
+" uncomment the following to use the real time python formatter
 
 " let b:ale_linters = ['flake8']
 " let b:ale_fixers = [
