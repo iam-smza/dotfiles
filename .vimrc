@@ -149,7 +149,7 @@ nmap <c-r> :w<CR>
 imap <c-r> <Esc>:w<CR>
 
 " run the code using Python3.x when pressing 'F9' in NORMAL MODE
-nnoremap <buffer> <F9> :exec '!python3.7' shellescape(@%, 1)<cr>
+nnoremap <buffer> <F9> :exec '!python3.8' shellescape(@%, 1)<cr>
 " look_it_up_later: how to use 'clear' function in the above bind when running python code
 " imap <F9> <Esc>:w<CR>:!clear;python %<CR>
 
@@ -161,6 +161,7 @@ nnoremap <buffer> <F9> :exec '!python3.7' shellescape(@%, 1)<cr>
 " REMEMBER TO USE THE SAME PYTHON VERSION YOU WANT TO USE THE MODULES FROM
 " 1. python3.x - Python Package and IDLE for programming
 " 2. PIP - Python Installer Package (Install package for python3.x if you want it to work)
+" 3. Use : python -m ensurepip command to bind PIP with current Python Version
 " 3. flake8 - Syntax checker for Python (pip3.7 install flake8)
 " 4. yapf - Auto python formatter (python3.x -m pip install yapf)
 " 5. Something else I am forgetting
