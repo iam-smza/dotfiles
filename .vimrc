@@ -56,8 +56,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
 " matching braces babe !
 Plugin 'jiangmiao/auto-pairs'
-" *** UNCOMMENT THE FOLLOWING AND ITS SETTINGS BELOW TO USE REAL TIME PYTHON FORMATTER ***
-" Plugin 'dense-analysis/ale'
+" Syntax checker and code formatter. (Too agressive so using it for just
+" formatting the cod)
+Plugin 'dense-analysis/ale'
 " for sorting the python modules alphabetically
 Plugin 'timothycrosley/isort'
 " VIM strip
@@ -164,7 +165,8 @@ nnoremap <buffer> <F9> :exec '!python3.8' shellescape(@%, 1)<cr>
 " 3. Use : python -m ensurepip command to bind PIP with current Python Version
 " 3. flake8 - Syntax checker for Python (pip3.7 install flake8)
 " 4. yapf - Auto python formatter (python3.x -m pip install yapf)
-" 5. Something else I am forgetting
+" 5. isort - Code formatter that sorts the imports alphabetically
+" 6. Something else I am forgetting
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""" for nerd-tree plugin """"""""""""""""""""""""""""""""""
@@ -195,7 +197,7 @@ let g:airline_theme='purify'
 """"""""""""""""""""""""""""""""" for dense-analysis/ale """""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" uncomment the following to use the real time python formatter
+" uncomment the following to use the real time python formatter (too aggressive for my usage)
 
 " let b:ale_linters = ['flake8']
 " let b:ale_fixers = [
@@ -204,6 +206,18 @@ let g:airline_theme='purify'
 " \   'ale#fixers#generic_python#BreakUpLongLines',
 " \   'yapf',
 " \]
+
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+" Disable all the highlights ale uses
+let g:ale_set_highlights = 0
+" Use only isort with ale
+let b:ale_fixers = ['isort',
+            \'trim_whitespace',
+            \'remove_trailing_lines',
+            \]
+" Fix when exit
+let b:ale_fix_on_save = 1
 
 " nnoremap <buffer> <silent> <LocalLeader>= :ALEFix<CR>
 
